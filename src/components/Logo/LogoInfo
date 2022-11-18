@@ -1,0 +1,45 @@
+const Logo = () => {
+	return (
+		<a className='logo__pic' href='/'>
+			<img src={logoSvg} alt="Logo DogFood" className='logo__pic'/>
+		</a>
+	);
+};
+
+export default Logo;
+
+Компонент Лого можно переиспользовать, например в Header и Footer, при этом добавить дополнительные
+классы или ссылки. Для этого в аргументы передаем нужные пропсы.
+ const Logo = (className, href) => {
+
+и дополнительно тернарным оператором задаем условия
+
+return (
+		<a
+в случае если className был передан то он добавляется, если нет то отбражается logo
+        className = {className ? className : "logo"} 
+то же самое с ссылкой
+        href = {href ? href : "#"}>
+
+			<img src={logoSvg} alt="Logo DogFood" className='logo__pic'/>
+		</a>
+	);
+};
+
+а в Headerе в Logo передаем className, например "logo logo_place_header", если ничего не передается то 
+тернарным оператором устанавливается className "logo"
+
+export default function Header() {
+  return (
+    <header className="header">
+      <div className="container">
+        <div className="header__wrapper">
+          <Logo/>
+          <Search/>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+и так можно сделать с любым параметром и будет какое-то динамическое изменение 

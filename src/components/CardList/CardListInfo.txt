@@ -1,0 +1,21 @@
+ Можно деструктурировать каждый объект как item через . с названием поля,
+  но это неудобно поэтому используется спред оператор ...
+ 						< Card
+ 							name={item.name}
+ 							price={item.price}
+ 							discount={item.discount}
+ 							weight={item.weight}
+ 							description={item.description}
+ 							picture={item.picture}
+ 						/>
+
+
+    data.map(function(item, index){
+        return (
+            <Card {...item}/>
+        )
+    })
+
+в стрелочной функции:
+data.map((item) => <Card key={index} {...item}/>)
+index использовать не желательно, меняется не позиция в доме, а обновляется индекс, нужно использовать id 
