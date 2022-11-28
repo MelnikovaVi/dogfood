@@ -103,3 +103,13 @@ useRef
 useLayoutEffect
 useImperativeHandle
 useDebugValue
+
+_______________________________________________
+
+заменили функцию поиска handleRequest
+старый поиск удален 
+
+//  const filterCards = cards.filter( item => item.name.toLowerCase().includes(searchQuery.toLowerCase()));
+//  setCards( state => filterCards);
+
+метод some - проверяет удовлетворяет ли какой нибудь элемент массива условию из функции

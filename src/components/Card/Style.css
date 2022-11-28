@@ -100,6 +100,16 @@
 	display: flex;
 }
 
+.card__favorite svg {
+	fill: #d0d0d0cf;
+}
+
+.card__favorite-active svg {
+	fill: #ff1100;
+	stroke: #eb3a2d;
+	stroke-width: 2px;
+}
+
 .card__cart {
 	margin-top: auto;
 }
@@ -130,19 +140,20 @@
 	color: #F44336;
 }
 
-.tag {
+.tags {
 	padding: 2px 8px;
 	border-radius: 20px;
 	font-weight: 800;
-	font-size: 16px;
+	font-size: 17px;
 	line-height: 20px;
 }
 
-.tag_type_new {
-	background-color: #03A9F4;
-	color: #FFFFFF;
+.tags_new {
+	background-color: rgb(26, 175, 244);
+	color: rgb(255, 255, 255);
 }
-.tag_type_sale {
-	background-color: #01A54E;
-	color: #FFFFFF;
+
+.tags_sale {
+	background-color: rgb(240, 240, 1);
+	color: rgb(3, 3, 3);
 }

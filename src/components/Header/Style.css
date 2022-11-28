@@ -8,8 +8,38 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 80px;
+	gap: 40px;
  } 
+
+ .userInfo{
+	 display: flex;
+	 border: 2px solid black;
+	flex-direction: column;
+	border-radius: 10px;
+	text-indent: 10px;
+	padding: 3px 5px;
+	margin: 3px 0px;
+	background-color: aliceblue;
+}
+
+.info {
+	border-radius: 15px;
+	padding: 5px 5px;
+	text-indent: 5px;
+	font-weight: 600;
+}
+
+.name, .email {
+	background-color: aliceblue;
+	font-size: 12px;
+ }
+
+ .btnEdit {
+	border: 2px solid rgb(255, 231, 11);
+	background-color: rgb(255, 238, 172);
+	box-shadow: 2px 2px 0px rgb(250, 184, 2);
+	border-radius: 15px;
+ }
 
 @media (max-width: 700px) {
 	.header__wrapper {
