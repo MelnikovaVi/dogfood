@@ -24,6 +24,8 @@ img {
 
 .content {
 	padding: 20px 0;
+	flex:1;
+	flex-grow: 1;
 }
 
 .content__sort {

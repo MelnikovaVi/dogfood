@@ -1,5 +1,4 @@
 // функция склонения окончаний
-
 export default function wordForm (n, text_form) {  
     n = Math.abs(n) % 100; 
     let n1 = n % 10;
@@ -7,4 +6,11 @@ export default function wordForm (n, text_form) {
     if (n1 > 1 && n1 < 5) { return text_form[1]; }
     if (n1 === 1) { return text_form[0]; }
     return text_form[2];
+}
+
+// расчет скидки
+export const discountPrice = (price, discount) => {
+   return (
+    Math.round(price - (price * discount / 100))
+   ) 
 }

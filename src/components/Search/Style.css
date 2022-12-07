@@ -42,10 +42,14 @@
 .search__btn_disabled svg {
   fill: #cfd8dc;
 }
-.search__btn:focus svg {
+.searchBtn:focus, .clearInputBtn:focus {
   fill: #feba0c;
 }
-.search__btn:hover svg {
+.searchBtn:hover {
+  fill: #feba0c;
+}
+
+.clearInputBtn:hover {
   fill: #feba0c;
 }
 

@@ -3,6 +3,7 @@ import {ReactComponent as Save} from "./save.svg";
 
 import classNames from "classnames";
 import { myLike } from "../Utils/Products";
+import { discountPrice } from "../Utils/Utils";
 
 // пропсы из CardList
 const Card = 
@@ -14,7 +15,7 @@ const Card =
 	_id, likes, 
 	actualUser
 }) => {	
-	const discount__price = Math.round(price - (price * discount / 100));
+	const discount__price = discountPrice(price, discount);
 
 	const like = myLike(likes, actualUser?._id)
 

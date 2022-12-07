@@ -18,11 +18,17 @@ class Api {
         }).then(responseFromFetch)
     }
     // запрос на установку/снятие лайка товара
-    changeLike (_id, myLike) {
+    changeLike (_id, isLike) {
         return fetch (`${this._baseUrl}/products/likes/${_id}`, {
-            method: myLike ? "DELETE" : "PUT",
+            method: isLike ? "DELETE" : "PUT",
             headers: this._headers
             }).then(responseFromFetch)
+    }
+    //запрос на поиск продукта по Id
+    getProductById (productId) {
+        return fetch (`${this._baseUrl}/products/${productId}`, {
+            headers: this._headers
+        }).then(responseFromFetch)
     }
     
 

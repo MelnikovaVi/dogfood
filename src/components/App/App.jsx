@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import api from "../Utils/Api";
 import useDebounce from "../../hooks/Decorator(debounce)";
 import { myLike } from "../Utils/Products";
+import Spinner from "../Spinner/Spinner";
 
 
 const App = () => {
@@ -24,17 +25,22 @@ const App = () => {
 
   // хук для получения информации о пользователе
   const [actualUser, setActualUser] = useState(null);
+
+  // хук для спинера - ожидания
+  const [loading, setLoading] = useState(true)
  
   // константа с функцией дебаунса
   const searchQueryWithDebounce = useDebounce(searchQuery, 1000)
  
   // Обновление функции поиск данных по серверу
   const handleRequest = () => {
+    setLoading(true)
     api.getSearch(searchQueryWithDebounce)
       .then((searchRes) => {
         setCards(searchRes)
       })
       .catch(error => console.log(error))
+      .finally(()=> setLoading(false))
   }
 
   // функция, осуществляющая поиск по сабмиту (кнопка лупы) - в качестве пропса передается в компонент <Search/> в App
@@ -68,19 +74,23 @@ const App = () => {
      })
       setCards(checkForUpdate)
     })
+    .catch(error => console.log(error))
   }
 
   useEffect (() => {
        handleRequest();
 }, [searchQueryWithDebounce])
 
+// хук получения данных
   useEffect(() => {
+    setLoading(true)
     api.waitAllInfo()
     .then(([cardFromApi, dataUser])=> {
       setCards(cardFromApi.products)
       setActualUser(dataUser)
     })
     .catch(error => console.log(error))
+    .finally(()=> setLoading(false))
   }, [])
 
   return (
@@ -98,7 +108,7 @@ const App = () => {
           <SearchInfo searchText={searchQuery} searchQuantity={cards.length}/>
           <Sort/>
               <div className="content__cards">
-                 <CardList goods={cards} onProductLike={handleChangeLike} actualUser={actualUser}/>
+                {loading ? < Spinner/> : <CardList goods={cards} onProductLike={handleChangeLike} actualUser={actualUser}/>}
               </div>
       </main>
 
