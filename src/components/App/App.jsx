@@ -1,9 +1,7 @@
 import "./Style.css";
 import Header from "../Header/Header";
-import CardList from "../CardList/CardList";
 import Footer from "../Footer/Footer";
 import SearchInfo from "../SearchInfo/SearchInfo";
-import Sort from "../Sort/Sort";
 import { useState } from "react";
 import Logo from "../Logo/Logo";
 import Search from "../Search/Search";
@@ -11,7 +9,15 @@ import { useEffect } from "react";
 import api from "../Utils/Api";
 import useDebounce from "../../hooks/Decorator(debounce)";
 import { myLike } from "../Utils/Products";
-import Spinner from "../Spinner/Spinner";
+import { CatalogPage } from "../../page/CatalogPage/CatalogPage";
+import { ProductPage } from "../../page/ProductPage";
+import { Routes } from "react-router-dom"
+import { Route } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { useCallback } from "react"
+import { NotFoundPage } from "../../page/NotFoundPage/NotFoundPage"
+import { UserContext } from "../../context/UserContext"
+import { CardsContext } from "../../context/CardsContext";
 
 
 const App = () => {
@@ -32,8 +38,11 @@ const App = () => {
   // константа с функцией дебаунса
   const searchQueryWithDebounce = useDebounce(searchQuery, 1000)
  
+  //
+  const navigate = useNavigate()
+
   // Обновление функции поиск данных по серверу
-  const handleRequest = () => {
+  const handleRequest = useCallback (() => {
     setLoading(true)
     api.getSearch(searchQueryWithDebounce)
       .then((searchRes) => {
@@ -41,12 +50,13 @@ const App = () => {
       })
       .catch(error => console.log(error))
       .finally(()=> setLoading(false))
-  }
+  }, [searchQueryWithDebounce])
 
   // функция, осуществляющая поиск по сабмиту (кнопка лупы) - в качестве пропса передается в компонент <Search/> в App
-  const handleFormSubmit = (e) => {
-       e.preventDefault(); // запрещает действие по умолчанию
-       handleRequest();
+  const handleFormSubmit = (searchText) => {
+    navigate('/');
+    setSearchQuery(searchText)
+    handleRequest(searchText);
   }
 
   // функция изменяющая setSearchQuery - в качестве пропса передается в компонент <Search/> в App
@@ -65,23 +75,24 @@ const App = () => {
   }
 
   // функция установки лайка
-  function handleChangeLike(product) {
+  const handleChangeLike = useCallback ((product) => {
     const like = myLike(product.likes, actualUser._id)
-    api.changeLike(product._id, like)
+    return api.changeLike(product._id, like)
     .then((newCardFromServer) => {
      const checkForUpdate = cards.map(oldCardFromState => {
       return oldCardFromState._id === newCardFromServer._id ? newCardFromServer : oldCardFromState 
      })
-      setCards(checkForUpdate)
+      setCards(checkForUpdate);
+      return newCardFromServer
     })
     .catch(error => console.log(error))
-  }
+  }, [actualUser])
 
   useEffect (() => {
        handleRequest();
-}, [searchQueryWithDebounce])
+  }, [searchQueryWithDebounce])
 
-// хук получения данных
+  // хук получения данных
   useEffect(() => {
     setLoading(true)
     api.waitAllInfo()
@@ -94,27 +105,46 @@ const App = () => {
   }, [])
 
   return (
-    <>
-      <Header user={actualUser} onUpdateUser={handleSetUserUpdate}>
-          <>
-              <Logo/>
-              <Search formSubmit={handleFormSubmit} onInputChange={handleInputChange}/> 
-      {/* так как были переданы пропсы в элемент Search, нужно их принять в исходном файле Search, 
-      то есть деструктурировать и передать их по ключу(имени пропса) - formSubmit и onInputChange */}
-          </>
-      </Header>
+    // В контекст можно оборачивать не весь документ, а часть (например только header или только main и другие компоненты)
+    <UserContext.Provider value={{user:actualUser}}>
+      <CardsContext.Provider value={{cards, handeleLike:handleChangeLike}}>
+        <Header 
+          user={actualUser} 
+          onUpdateUser={handleSetUserUpdate}>
+            <>
+                <Logo/>
+                <Routes>
+                  <Route path="/" element ={
+                    <Search 
+                      formSubmit={handleFormSubmit} 
+                      onInputChange={handleInputChange}
+                      /> 
+                  }/>
+                </Routes>
+            </>
+        </Header>
 
-      <main className="content container">
-          <SearchInfo searchText={searchQuery} searchQuantity={cards.length}/>
-          <Sort/>
-              <div className="content__cards">
-                {loading ? < Spinner/> : <CardList goods={cards} onProductLike={handleChangeLike} actualUser={actualUser}/>}
-              </div>
-      </main>
+        <main className="content container">
+            <SearchInfo searchText={searchQuery}
+                        searchQuantity={cards.length}/>
 
-      <Footer/>
-    </>
-  );
+
+            <Routes>
+              <Route index element = {
+                <CatalogPage loading={loading}/>
+              }/>
+              <Route path="/product/:productId" element = {
+                <ProductPage loading={loading}/>
+              }/>
+              <Route path="*" element={<NotFoundPage/>}/>
+            </Routes>
+            
+        </main>
+
+        <Footer/>
+      </CardsContext.Provider>
+    </UserContext.Provider>
+  )
 };
 
 export default App;

@@ -5,21 +5,29 @@ import { ReactComponent as Save } from "../Card/save.svg";
 import delivery from "./icon-delivery.png";
 import quality from "./icon-quality.png";
 import { createMarkup, myLike } from "../Utils/Products";
+import { useNavigate } from "react-router-dom"
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 
 export const Product = ({
   name, likes=[], pictures, price, discount, reviews,
-  tags, description, _id, actualUser, onProductLike
+  tags, description, _id, 
+//   actualUser,
+ onProductLike
 }) => {
+    const {user:actualUser} = useContext(UserContext);
 
   const discount__price = discountPrice(price, discount);
   const liked = myLike(likes, actualUser?._id);
   const descriptionHTML = createMarkup(description);
-
+  
+  //возвращение назад при нажатии на кнопку назад
+  const backwardNavigate = useNavigate() 
 
   return (
     <>
         <div className={m.productMain}>
-            <a href="#" className="button-back">Назад</a>
+            <a href="#" className="button-back" onClick={()=> backwardNavigate(-1)}>Назад</a>
             <h1 className={m.productName}>{name}</h1>
 
             <div><span>Артикул:</span><b>12345678</b></div>

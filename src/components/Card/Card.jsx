@@ -5,16 +5,26 @@ import classNames from "classnames";
 import { myLike } from "../Utils/Products";
 import { discountPrice } from "../Utils/Utils";
 
+import { Link } from "react-router-dom"
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import { CardsContext } from "../../context/CardsContext";
+
 // пропсы из CardList
 const Card = 
 ({
 	name, price, discount,
 	weight, description,
 	pictures, tags,
-	onProductLike2,
+	// onProductLike2,
 	_id, likes, 
-	actualUser
+	// actualUser - после добавления в контекст в пропсах элемент не нужен
 }) => {	
+	// создаем контекст для текущего пользователя
+	const {user:actualUser} = useContext(UserContext)
+	const {handeleLike : onProductLike2} = useContext(CardsContext)
+
+	
 	const discount__price = discountPrice(price, discount);
 
 	const like = myLike(likes, actualUser?._id)
@@ -40,7 +50,7 @@ const Card =
 			</div>
 
 			{/* Вся карточка (картинка, цены, количество, название товара) является ссылкой поэтому оборачиваем в тег а*/}
-			<a href="/product" className="card__link">
+			<Link to={`/product/${_id}`} className="card__link">
 				<img src={pictures} alt={description} className="card__image" />
 				<div className="card__desc">
 
@@ -51,7 +61,7 @@ const Card =
 					<span className="card__weight">{weight}</span>
 					<p className="card__name">{name}</p>
 				</div>
-			</a>
+			</Link>
 
 			<a href="#/" className="card__cart btn btn_type_primary">Купить</a>
 			
