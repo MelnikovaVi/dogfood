@@ -1,0 +1,17 @@
+.productName {
+    font-size: 32px;
+    line-height: 1.5;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.btnBack {
+    color: grey;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.filled {
+    fill: blue;
+}

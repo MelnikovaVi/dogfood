@@ -1,0 +1,66 @@
+.accordeon {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #000;
+}
+
+.accordeonBtn {
+    border-color: transparent;
+    cursor: pointer;
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    border: none;
+    outline: none;
+    position: relative;
+}
+
+.accordeonBtn::before {
+    content: '';
+    width: 14px;
+    height: 2px;
+    background: #333;
+    position: absolute;
+    top: calc(50% -1px);
+    left: 0;
+    display: block;
+    transition: all 0.3s;
+}
+
+.accordeonBtn::after {
+    content: '';
+    width: 2px;
+    height: 14px;
+    background: #333;
+    position: absolute;
+    top: calc(50% -7px);
+    left: 6px;
+    display: block;
+    transition: all 0.3s;
+}
+
+.title {
+    margin: 0;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.content {
+    padding-left: 40px;
+    max-height: 0;
+    background: rgb(255, 255, 255);
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.active .content {
+    max-height: 100vh;
+}
+
+.text {
+    padding-bottom: 24px;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+}

@@ -5,6 +5,7 @@ import Vk from "./img/vk.svg";
 import Whatsapp from "./img/whatsapp.svg";
 import Logo from "../Logo/Logo";
 import "./Style.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -17,17 +18,17 @@ const Footer = () => {
           	</div>
           	<div className="footer__col">
             	<nav className="menu-bottom">
-              		<a className="menu-bottom__item" href="/catalogue" >Каталог</a>
+              		<a className="menu-bottom__item" href="/" >Каталог</a>
               		<a className="menu-bottom__item" href="/catalogue" >Акции</a>
               		<a className="menu-bottom__item" href="/catalogue" >Новости</a>
-              		<a className="menu-bottom__item" href="/catalogue" >Отзывы</a>
+              		<a className="menu-bottom__item" href="/reviews" >Отзывы</a>
             	</nav>
           </div>
 
         	<div className="footer__col">
             	<nav className="menu-bottom">
               		<a className="menu-bottom__item" href="/catalogue" >Оплата и доставка</a>
-              		<a className="menu-bottom__item" href="/catalogue" >Часто спрашивают</a>
+              		<Link className="menu-bottom__item" to="/faq">Часто спрашивают</Link>
               		<a className="menu-bottom__item" href="/catalogue" >Обратная связь</a>
               		<a className="menu-bottom__item" href="/catalogue" >Контакты</a>
             	</nav>

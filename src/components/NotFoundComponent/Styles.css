@@ -1,0 +1,27 @@
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100vh;
+    gap: 10px;
+}
+.errorImg{
+    width: 250px;
+    margin: 0 auto;
+}
+
+.title {
+    margin: 0 auto;
+}
+
+.btnBack {
+    margin: 0 auto;
+    border: 2px solid rgb(0, 0, 0);
+    color: black;
+    background:  #fed700;
+}
+
+.btnBack:hover {
+    color: #fed700;
+    background:  black;
+    transition: 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}

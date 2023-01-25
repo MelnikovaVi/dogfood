@@ -10,12 +10,14 @@ class Api {
         return fetch (`${this._baseUrl}/products`, {
             headers: this._headers
         }).then(responseFromFetch)
+        .catch(error => console.log(error))
     }
     // запрос - поиск продуктов на сервере, вместо функции handleRequest
     getSearch(query) {
         return fetch (`${this._baseUrl}/products/search?query=${query}`, {
             headers: this._headers
         }).then(responseFromFetch)
+        .catch(error => console.log(error))
     }
     // запрос на установку/снятие лайка товара
     changeLike (_id, isLike) {
@@ -23,21 +25,22 @@ class Api {
             method: isLike ? "DELETE" : "PUT",
             headers: this._headers
             }).then(responseFromFetch)
+            .catch(error => console.log(error))
     }
     //запрос на поиск продукта по Id
     getProductById (productId) {
         return fetch (`${this._baseUrl}/products/${productId}`, {
             headers: this._headers
         }).then(responseFromFetch)
+        .catch(error => console.log(error))
     }
-    
-
 
     // запрос получения информации о пользователе
     getUserInfo () {
         return fetch (`${this._baseUrl}/v2/group-7/users/me`, {
             headers: this._headers
         }).then(responseFromFetch)
+        .catch(error => console.log(error))
     }
     // запрос установки данных пользователя
     setUserInfo (updateUserInfo) {
@@ -46,12 +49,22 @@ class Api {
             method: 'PATCH',
             body: JSON.stringify(updateUserInfo)
         }).then(responseFromFetch)
+        .catch(error => console.log(error))
     }
     // ожидание выполнения нескольких запросов
     waitAllInfo() {
         return Promise.all([this.getProductList(), this.getUserInfo()])
     }
-    
+
+    // запрос отправки отзыва от пользователя
+    sendReview (productId, review) {
+        return fetch (`${this._baseUrl}/products/review/${productId}`, {
+            headers: this._headers,
+            method: 'POST',
+            body: JSON.stringify(review)
+        }).then(responseFromFetch)
+        .catch(error => console.log(error))
+    }
 
 }
 

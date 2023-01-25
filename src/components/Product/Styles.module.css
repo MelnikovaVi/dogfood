@@ -145,3 +145,11 @@
 	font-size: 16px;
 	line-height: 20px;
 }
+
+.userReview {
+	border: 2px solid rgba(187, 183, 183, 0.638);
+	border-radius: 10px;
+	margin-top: 10px;
+	padding: 5px 10px;
+	min-height: 100px;
+}
