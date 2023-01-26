@@ -1,0 +1,22 @@
+
+.spinner {
+    animation: 2s linear infinite round;
+    background-image: url('./paw.png');
+    background-repeat: no-repeat;
+    width: 110px;
+    height: 110px;
+    position: absolute;
+    top: 35%;
+    left: 48%;
+    z-index: 20;
+}
+
+@keyframes round {
+    0% {
+        transform: rotate(0deg);
+        
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

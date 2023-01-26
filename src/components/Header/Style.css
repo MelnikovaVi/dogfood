@@ -1,0 +1,85 @@
+.header {
+	width: 100%;
+	background-color: #fed700;
+	padding: 12px 0;
+}
+
+.header__wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 40px;
+ } 
+
+ .userInfo{
+	text-indent: 10px;
+	padding: 3px 5px;
+}
+
+.info {
+	border-radius: 15px;
+	padding: 5px 5px;
+	text-indent: 5px;
+	font-weight: 600;
+}
+
+.name, .email {
+	background-color: aliceblue;
+	font-size: 12px;
+ }
+
+ .btnEdit {
+	border: 2px solid rgb(255, 231, 11);
+	background-color: rgb(255, 238, 172);
+	box-shadow: 2px 2px 0px rgb(250, 184, 2);
+	border-radius: 15px;
+ }
+
+.favoritesLink {
+	position: relative;
+	width: 34px;
+	height: 34px;
+}
+.heartIcon{
+	stroke: #fe0400;
+	fill: rgb(235, 95, 80);
+	margin-top: 8px;
+}
+
+.iconBubble{
+	background-color: rgb(235, 95, 80);
+	border:1px solid #f5eeee;
+	border-radius: 50%;
+	color: #f5eeee;
+	font-size: 12px;
+	font-weight: bold;
+	width: 22px;
+	height: 22px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	box-sizing: border-box;
+	position: absolute;
+	bottom: 80%;
+	left: 80%;
+	
+}
+
+a.textEnter {
+	margin: 0px 15px ;
+	text-decoration: none;
+	color: #000000;
+}
+
+.text:hover {
+color: rgb(238, 223, 59);
+}
+
+
+@media (max-width: 700px) {
+	.header__wrapper {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 20px;
+	}
+}

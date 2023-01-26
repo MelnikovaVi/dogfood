@@ -1,0 +1,10 @@
+.text {
+    color: rgb(148, 147, 147);
+    font-size: 12px;
+    padding: 0px 10px;
+}
+.errorMess {
+    color: rgb(253, 36, 36);
+    font-size: 12px;
+    text-indent: 5px;
+}
