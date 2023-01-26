@@ -6,13 +6,11 @@ import { useState } from 'react';
 
 
 const Search = ({formSubmit, onInputChange}) => {
-// теперь переданные из App пропсы нужно повесить на форму и на текстовый инпут 
 	const [searchText, setSearchText] = useState('');
 
 	const handleInput = (e) => {
 		setSearchText(e.target.value)
 		onInputChange && onInputChange(e.target.value)
-		// e.target.value - это то, что вводится в инпут
 	}
 
 	const handleFormSubmit = (e) => {

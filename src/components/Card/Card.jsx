@@ -13,13 +13,11 @@ import { CardsContext } from "../../context/CardsContext";
 //подключение скелетона
 import ContentLoader from "react-content-loader"
 
-// пропсы из CardList
 const Card = 
 ({
 	name, price, discount,
 	weight, description,
 	pictures, tags,
-	// onProductLike2,
 	_id, likes, 
 	// actualUser - после добавления в контекст в пропсах элемент не нужен
 }) => {	

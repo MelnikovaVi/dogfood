@@ -4,12 +4,9 @@ import { UserContext } from "../../context/UserContext";
 import Card from "../Card/Card";
 import NotFoundComponent from "../NotFoundComponent/NotFoundComponent";
 import "./Style.css";
-// import { useContext } from "react";
-// import { CardsContext } from "../../context/CardsContext";
 
 
 const CardList = ({cards}) => {
-	// const {cards} = useContext(CardsContext)
 	const navigate = useNavigate()
 	const {loading} = useContext(UserContext)
 	return (

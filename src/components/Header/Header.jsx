@@ -17,15 +17,12 @@ export default function Header({children, user}) {
           {children}
           {/* изменение состояния родителя через дочерние компоненты производятся через колбеки */}
           <div className="userInfo">
-            {/* <span className="info">Пользователь</span> */}
-            {/* {user?.name && <span className="name">{user?.name}</span>} */}
-            {/* {user?.email && <span className="email">{user?.email}</span>} */}
             <div className="iconMenu">
               <Link to="/my-fav" className="favoritesLink">
                   <HeartIcon className="heartIcon"/>
                   {myFav.length !== 0 && <span className="iconBubble">{myFav.length}</span>}
               </Link>
-              <Link to="/login" state={{background:location, firstPath: location.pathname}}>Войти</Link>
+              <Link to="/login" className="textEnter" state={{background:location, firstPath: location.pathname}}>Войти</Link>
             </div>
           </div>
         </div>

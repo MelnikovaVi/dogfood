@@ -10,9 +10,6 @@ import { useApi } from "../hooks/useApi"
 
 
 export const ProductPage = () => {
-  // const [product, setProduct] = useState(null)
-  // const [errorState, setErrorState] = useState(null);
-
   //хук для параметров url
   const {productId} = useParams();
 	const {handeleLike} = useContext(CardsContext)
@@ -26,26 +23,13 @@ export const ProductPage = () => {
     errorState
   } = useApi(handeleGetProduct)
   
-  // функция установки лайка
+
   const handleChangeLikeInPage = useCallback(() => {
     handeleLike(product)
       .then((updateProduct) => {
         setProduct(updateProduct)
       })
   }, [product, handeleLike, setProduct])
-
-  // useEffect(() => {
-    //   // setLoading(true)
-  //   api.getProductById(productId)
-  //   .then((productData)=> {
-  //     setProduct(productData)
-  //     // setActualUser(dataUser)
-  //   })
-  //   .catch(error => setErrorState(error))
-  //   // .finally(()=> {
-  //   //   setLoading(false)
-  //   //   })
-  // }, [])
 
   return (
   <>

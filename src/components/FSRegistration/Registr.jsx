@@ -15,9 +15,6 @@ export const Registr = () => {
     const clickLoginButton = (e) => {
         e.preventDefault()
         navigate('/login', { replace: true, state: {background:locate, firstPath}})
-
-       
-
     }
     const sendRegistrApi = (data) => {
         console.log(data);

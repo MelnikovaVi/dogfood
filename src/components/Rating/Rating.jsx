@@ -5,7 +5,6 @@ import { useEffect } from 'react'
 import classNames from 'classnames'
 
 export const Rating = ({isEdite = false, rating, setRating, ...props}) => {
-    //массив для хранения звезд рейтинга
     const [ratingArray, setRatingArray] = useState(new Array(5).fill(<></>))
 
     

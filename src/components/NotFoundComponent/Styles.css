@@ -14,10 +14,13 @@
 }
 
 .btnBack {
-    margin: 0 auto;
+    margin: 10px auto;
+    padding: 6px;
     border: 2px solid rgb(0, 0, 0);
     color: black;
     background:  #fed700;
+    border-radius: 15px; text-decoration: none;
+
 }
 
 .btnBack:hover {
